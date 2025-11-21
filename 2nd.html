@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags for Ranking -->
+    <title>Sunydi Resorts | Best Luxury Hotel in Hambantota, Sri Lanka</title>
+    <meta name="description" content="Experience the best luxury hotel in Hambantota, Sri Lanka. Sunydi Resorts offers exclusive ocean-view suites, private villas, world-class dining, and serene spa treatments on the pristine southern coast.">
+    <meta name="keywords" content="best hotel Hambantota, luxury resort Sri Lanka, 5 star hotel Hambantota, beach villa Sri Lanka, Sunydi Resorts, ocean view suites Hambantota">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Tailwind CSS for structure -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Elegant Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Design System Variables --- */
+        :root {
+            --bg-color: #fffef2;
+            --bg-alt: #f6f5e8;
+            --text-color: #333333;
+            --text-light: #666666;
+            --border-color: #ebeade;
+            
+            /* Glass Variables */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: 16px;
+            
+            /* Beige Glass (for Menu/Footer) */
+            --beige-glass-bg: rgba(255, 254, 242, 0.85);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent; /* Remove blue highlight on tap */
+        }
+
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: var(--beige-glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(235, 234, 222, 0.6);
+            transition: all 0.4s ease;
+        }
+
+        .nav-link {
+            position: relative;
+            letter-spacing: 0.05em;
+            padding-bottom: 2px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* --- Mobile Menu (Glassmorphism with Beige) --- */
+        #mobile-menu {
+            background: rgba(255, 254, 242, 0.9); /* Light beige base */
+            backdrop-filter: blur(25px);          /* Heavy blur for glass effect */
+            -webkit-backdrop-filter: blur(25px);  /* Safari support */
+            border-left: 1px solid rgba(235, 234, 222, 0.8); /* Subtle border */
+        }
+
+        /* --- Glassmorphic Cards --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.5s ease;
+        }
+
+        /* Touch-friendly hover state: activates on tap for mobile */
+        .glass-card:hover, .glass-card:active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+        }
+
+        /* Light glass for sections with light backgrounds */
+        .glass-card-light {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+        }
+
+        /* Footer Glass */
+        footer.glass-footer {
+            background: var(--beige-glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* --- Refined Animations --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .hover-lift {
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+        }
+
+        /* Active state for touch devices to mimic hover */
+        .hover-lift:hover, .hover-lift:active {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        }
+
+        /* Image Hover Zoom Effect - Smoother */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            will-change: transform;
+        }
+        /* Active state for touch zoom */
+        .img-zoom-container:hover img, .img-zoom-container:active img {
+            transform: scale(1.06);
+        }
+
+        /* Page Transitions */
+        .page-content {
+            display: none;
+            animation: fadeInPage 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Testimonials Slideshow */
+        .testimonial-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .testimonial-slide.active {
+            display: block;
+            opacity: 1;
+            animation: slideUpFade 1s ease-out;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Buttons --- */
+        .btn-primary {
+            border: 1px solid var(--text-color);
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            cursor: pointer; /* Ensure tap target on mobile */
+        }
+        
+        .btn-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: var(--text-color);
+            transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before, .btn-primary:active::before {
+            width: 100%;
+        }
+
+        .btn-primary:hover, .btn-primary:active {
+            color: var(--bg-color);
+        }
+
+        /* --- Form Styling --- */
+        input, select, textarea {
+            background-color: transparent;
+            border: 1px solid #bcbbb4;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--text-color);
+        }
+
+        /* Scrollbar hiding */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 px-6 py-5 flex justify-between items-center">
+        <a href="#" onclick="router('home')" class="text-2xl serif tracking-widest font-medium z-50 relative text-[#333]">SUNYDI</a>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex gap-10 items-center">
+            <a href="#" onclick="router('home')" class="nav-link text-xs uppercase tracking-widest" id="link-home">Home</a>
+            <a href="#" onclick="router('rooms')" class="nav-link text-xs uppercase tracking-widest" id="link-rooms">Accommodations</a>
+            <a href="#" onclick="router('amenities')" class="nav-link text-xs uppercase tracking-widest" id="link-amenities">Amenities</a>
+            <a href="#" onclick="router('dining')" class="nav-link text-xs uppercase tracking-widest" id="link-dining">Dining</a>
+            <a href="#" onclick="router('contact')" class="nav-link text-xs uppercase tracking-widest" id="link-contact">Contact</a>
+            <a href="#" onclick="router('booking')" class="btn-primary px-8 py-3 text-xs uppercase tracking-widest ml-6">Book Now</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="lg:hidden z-50 p-2 active:scale-95 transition-transform" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+            <i data-lucide="menu" class="w-8 h-8 text-[#333]"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay (Glassmorphic with Beige) -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 transform translate-x-full transition-transform duration-500 cubic-bezier(0.77, 0, 0.175, 1) flex flex-col justify-center items-center gap-8">
+        <a href="#" onclick="router('home'); toggleMobileMenu()" class="text-3xl serif active:scale-95 transition-transform">Home</a>
+        <a href="#" onclick="router('rooms'); toggleMobileMenu()" class="text-3xl serif active:scale-95 transition-transform">Accommodations</a>
+        <a href="#" onclick="router('amenities'); toggleMobileMenu()" class="text-3xl serif active:scale-95 transition-transform">Amenities</a>
+        <a href="#" onclick="router('dining'); toggleMobileMenu()" class="text-3xl serif active:scale-95 transition-transform">Dining</a>
+        <a href="#" onclick="router('contact'); toggleMobileMenu()" class="text-3xl serif active:scale-95 transition-transform">Contact</a>
+        <a href="#" onclick="router('booking'); toggleMobileMenu()" class="text-3xl serif mt-4 border-b border-black pb-1 active:scale-95 transition-transform">Book Now</a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-0">
+
+        <!-- HOME PAGE -->
+        <div id="home" class="page-content active">
+            <!-- Section 1: Hero -->
+            <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 z-0">
+                    
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop" alt="Sunydi Resorts Hambantota Sri Lanka Beachfront Luxury" class="w-full h-full object-cover opacity-0 animate-fadeInImage" style="animation-fill-mode: forwards; animation-duration: 2.5s;">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#fffef2]/20 via-transparent to-[#fffef2]/60"></div>
+                </div>
+                <div class="relative z-10 text-center px-4 max-w-5xl mx-auto fade-in-section" style="transition-delay: 0.2s;">
+                    <h1 class="text-4xl md:text-7xl lg:text-8xl mb-6 md:mb-8 leading-tight tracking-wide drop-shadow-lg">Where Luxury<br><span class="italic font-light">Meets Tranquility</span></h1>
+                    <h2 class="text-base md:text-xl text-[#333] mb-10 md:mb-12 font-light max-w-xl md:max-w-2xl mx-auto leading-relaxed drop-shadow-md">Discover the finest hotel in Hambantota, Sri Lanka. An exclusive coastal retreat tailored for the discerning traveler.</h2>
+                    <div class="flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center">
+                        <button onclick="router('booking')" class="btn-primary px-8 md:px-10 py-4 uppercase tracking-[0.2em] text-xs bg-white/30 backdrop-blur-md hover:bg-white/50 w-full md:w-auto active:scale-95">Reserve Your Stay</button>
+                        <button onclick="router('rooms')" class="px-8 md:px-10 py-4 uppercase tracking-[0.2em] text-xs border-b border-[#333] hover:text-[#666] transition-colors active:opacity-70">Explore Rooms</button>
+                    </div>
+                </div>
+            </section>
+
+            <style>
+                @keyframes fadeInImage {
+                    from { opacity: 0; transform: scale(1.1); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+            </style>
+
+            <!-- Section 2: Philosophy -->
+            <section class="py-20 md:py-32 px-6 container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+                    
+                    <div class="img-zoom-container h-[400px] md:h-[650px] relative fade-in-section shadow-2xl rounded-sm overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=2525&auto=format&fit=crop" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" alt="Luxury Interior Hambantota Hotel">
+                    </div>
+                    <div class="fade-in-section md:pr-12">
+                        <span class="uppercase tracking-[0.2em] text-xs text-[#666] mb-4 md:mb-6 block">Our Philosophy</span>
+                        <h2 class="text-3xl md:text-5xl lg:text-6xl mb-6 md:mb-8 leading-tight">Timeless <br><span class="italic">Elegance</span></h2>
+                        <p class="text-[#666] leading-relaxed mb-6 md:mb-8 text-base md:text-lg font-light">
+                            Nestled along the pristine southern coastline of Sri Lanka, Sunydi Resorts offers a sanctuary where modern luxury harmonizes with nature. Every detail is meticulously curated to ensure your stay is the best experience in Hambantota. We believe in the art of doing nothing, beautifully.
+                        </p>
+                        <p class="text-[#666] leading-relaxed mb-8 md:mb-10 text-base md:text-lg font-light">
+                            From the moment you arrive, the outside world fades away, replaced by the rhythm of the tides and the whisper of palms.
+                        </p>
+                        <button onclick="router('amenities')" class="flex items-center gap-3 uppercase text-xs tracking-[0.15em] border-b border-black pb-2 w-max hover:opacity-60 transition-opacity group active:scale-95">
+                            Discover Amenities <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Glassmorphic Accommodations -->
+            <section class="py-20 md:py-32 relative bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');">
+                <div class="absolute inset-0 bg-black/20"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="text-center mb-16 md:mb-20 fade-in-section">
+                        <span class="uppercase tracking-[0.2em] text-xs text-white/90 mb-4 block">Accommodations</span>
+                        <h2 class="text-4xl md:text-5xl text-white mb-6">Curated Stays</h2>
+                        <p class="text-white/90 font-light max-w-xl mx-auto">Designed for comfort, styled for luxury. Each room offers a unique perspective of paradise on Sri Lanka's southern coast.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Glass Card 1 -->
+                        <div class="glass-card p-6 hover-lift fade-in-section cursor-pointer group active:scale-95 transition-transform" onclick="router('rooms')">
+                            <div class="img-zoom-container h-[250px] md:h-[300px] mb-6 overflow-hidden relative rounded-sm">
+                                <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Ocean View Suite Hambantota">
+                            </div>
+                            <h3 class="text-xl md:text-2xl mb-2 text-white group-hover:translate-x-2 transition-transform duration-300">Ocean View Suite</h3>
+                            <div class="flex justify-between items-center border-t border-white/20 pt-4 mt-4">
+                                <p class="text-xs text-white/80 uppercase tracking-widest">2 Guests • 85m²</p>
+                                <p class="text-lg font-serif italic text-white">$850</p>
+                            </div>
+                        </div>
+                        <!-- Glass Card 2 -->
+                        <div class="glass-card p-6 hover-lift fade-in-section cursor-pointer group active:scale-95 transition-transform" style="transition-delay: 100ms;" onclick="router('rooms')">
+                            <div class="img-zoom-container h-[250px] md:h-[300px] mb-6 overflow-hidden relative rounded-sm">
+                                <img src="https://images.unsplash.com/photo-1590490360182-f33fb0d41022?q=80&w=2672&auto=format&fit=crop" class="w-full h-full object-cover" alt="Garden Villa Sri Lanka">
+                            </div>
+                            <h3 class="text-xl md:text-2xl mb-2 text-white group-hover:translate-x-2 transition-transform duration-300">Garden Villa</h3>
+                            <div class="flex justify-between items-center border-t border-white/20 pt-4 mt-4">
+                                <p class="text-xs text-white/80 uppercase tracking-widest">4 Guests • 120m²</p>
+                                <p class="text-lg font-serif italic text-white">$1,200</p>
+                            </div>
+                        </div>
+                        <!-- Glass Card 3 -->
+                        <div class="glass-card p-6 hover-lift fade-in-section cursor-pointer group md:col-span-2 lg:col-span-1 active:scale-95 transition-transform" style="transition-delay: 200ms;" onclick="router('rooms')">
+                            <div class="img-zoom-container h-[250px] md:h-[300px] mb-6 overflow-hidden relative rounded-sm">
+                                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Presidential Suite Luxury Hotel">
+                            </div>
+                            <h3 class="text-xl md:text-2xl mb-2 text-white group-hover:translate-x-2 transition-transform duration-300">Presidential Suite</h3>
+                            <div class="flex justify-between items-center border-t border-white/20 pt-4 mt-4">
+                                <p class="text-xs text-white/80 uppercase tracking-widest">6 Guests • 200m²</p>
+                                <p class="text-lg font-serif italic text-white">$2,500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 4: Experiences -->
+            <section class="py-20 md:py-32 px-6 bg-[#fffef2]">
+                <div class="container mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div class="fade-in-section order-2 md:order-1">
+                            <div class="grid grid-cols-2 gap-4">
+                                
+                                <div class="img-zoom-container h-[250px] md:h-[350px] mt-8 md:mt-12 rounded-sm overflow-hidden">
+                                     <img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Yoga in Hambantota">
+                                </div>
+                                
+                                <div class="img-zoom-container h-[250px] md:h-[350px] rounded-sm overflow-hidden">
+                                     <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Beach Activities Sri Lanka">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fade-in-section md:pl-12 order-1 md:order-2">
+                            <span class="uppercase tracking-[0.2em] text-xs text-[#666] mb-4 md:mb-6 block">Experiences</span>
+                            <h2 class="text-3xl md:text-5xl mb-6 md:mb-8 leading-tight">Create Lasting <br><span class="italic">Memories</span></h2>
+                            <p class="text-[#666] leading-relaxed mb-8 text-base md:text-lg font-light">
+                                Beyond the comfort of your room lies a world of adventure. Whether it's a sunrise yoga session on our private deck, a guided snorkeling tour of the coral reefs, or a private cooking class with our executive chef, we offer curated experiences to enrich your soul.
+                            </p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center gap-4 text-xs md:text-sm uppercase tracking-wider text-[#444]"><i data-lucide="waves" class="w-4 h-4"></i> Water Sports</li>
+                                <li class="flex items-center gap-4 text-xs md:text-sm uppercase tracking-wider text-[#444]"><i data-lucide="flower-2" class="w-4 h-4"></i> Wellness Programs</li>
+                                <li class="flex items-center gap-4 text-xs md:text-sm uppercase tracking-wider text-[#444]"><i data-lucide="compass" class="w-4 h-4"></i> Local Excursions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section 5: Culinary Highlight -->
+            <section class="py-20 md:py-32 bg-[#f6f5e8]">
+                 <div class="container mx-auto px-6">
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-center">
+                        <div class="fade-in-section md:pr-12">
+                            <span class="uppercase tracking-[0.2em] text-xs text-[#666] mb-4 md:mb-6 block">Dining</span>
+                            <h2 class="text-3xl md:text-5xl mb-6 md:mb-8 leading-tight">Culinary <br><span class="italic">Masterpieces</span></h2>
+                            <p class="text-[#666] leading-relaxed mb-8 text-base md:text-lg font-light">
+                                Savor flavors from around the world, reimagined with local ingredients by our award-winning chefs. From intimate seaside dinners to vibrant social lounges, every meal is a celebration of taste at the best hotel in Hambantota.
+                            </p>
+                            <button onclick="router('dining')" class="btn-primary px-8 py-3 uppercase text-xs tracking-widest active:scale-95">Explore Dining</button>
+                        </div>
+                        
+                        <div class="img-zoom-container h-[400px] md:h-[600px] relative fade-in-section rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2574&auto=format&fit=crop" class="w-full h-full object-cover" alt="Fine Dining Sri Lanka">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Glassmorphic Testimonials Slideshow -->
+            <section class="py-20 md:py-32 px-6 container mx-auto text-center relative" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2525&auto=format&fit=crop'); background-size: cover; background-attachment: fixed; background-position: center;">
+                <div class="absolute inset-0 bg-black/30"></div>
+                <div class="max-w-4xl mx-auto relative z-10 glass-card p-8 md:p-20 rounded-sm fade-in-section">
+                    <i data-lucide="quote" class="w-10 h-10 mx-auto mb-8 text-white/80"></i>
+                    
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide active">
+                        <h3 class="text-xl md:text-3xl lg:text-4xl font-serif italic leading-relaxed mb-8 text-white">"Sunydi Resorts isn't just a destination; it's a feeling. A feeling of absolute peace, refined luxury, and a connection to the beauty of the world that I haven't found anywhere else."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                            <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold text-white">Eleanor Vance, Travel Editor</p>
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                        </div>
+                    </div>
+
+                     <!-- Testimonial 2 -->
+                    <div class="testimonial-slide">
+                        <h3 class="text-xl md:text-3xl lg:text-4xl font-serif italic leading-relaxed mb-8 text-white">"The attention to detail is simply unmatched. From the personalized welcome to the exquisite dining, every moment felt curated just for us. A truly magical escape in Sri Lanka."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                            <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold text-white">James & Sarah, Honeymooners</p>
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide">
+                        <h3 class="text-xl md:text-3xl lg:text-4xl font-serif italic leading-relaxed mb-8 text-white">"I've traveled the world, but Sunydi holds a special place in my heart. It's rare to find such luxury that still feels authentic and welcoming. I can't wait to return."</h3>
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                            <p class="uppercase tracking-widest text-[10px] md:text-xs font-semibold text-white">Marcus Thorne, Architect</p>
+                            <div class="h-[1px] w-8 md:w-12 bg-white/50"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- ROOMS PAGE -->
+        <div id="rooms" class="page-content">
+            <section class="bg-[#f6f5e8] py-24 md:py-32 text-center mt-16">
+                <div class="container mx-auto px-6 fade-in-section">
+                    <h1 class="text-4xl md:text-6xl mb-6">Accommodations</h1>
+                    <p class="text-[#666] max-w-2xl mx-auto text-base md:text-lg font-light">Each room and suite is thoughtfully designed to provide the ultimate in comfort and elegance, featuring panoramic views of Hambantota's coastline and bespoke furnishings.</p>
+                </div>
+            </section>
+
+            <section class="py-20 container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+                    <!-- Room Item 1 -->
+                    <div class="glass-card-light hover-lift fade-in-section p-2 rounded-sm">
+                        <div class="img-zoom-container h-[250px] md:h-[400px] relative overflow-hidden rounded-sm">
+                            <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Room">
+                            <div class="absolute top-4 right-4 md:top-6 md:right-6 bg-white/90 backdrop-blur px-4 py-1 md:px-5 md:py-2 text-lg md:text-xl font-serif">$850 <span class="text-[10px] font-sans uppercase tracking-widest text-[#666] ml-1">/night</span></div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <h3 class="text-2xl md:text-4xl mb-4">Ocean View Suite</h3>
+                            <p class="text-[#666] mb-8 leading-relaxed font-light text-sm md:text-base">Wake up to the sound of waves in this spacious suite featuring a king-sized bed, private balcony, and marble bathroom with rainfall shower.</p>
+                            <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-10 text-[10px] md:text-xs uppercase tracking-widest text-[#444]">
+                                <span class="flex items-center gap-3"><i data-lucide="wifi" class="w-4 h-4"></i> Free Wifi</span>
+                                <span class="flex items-center gap-3"><i data-lucide="coffee" class="w-4 h-4"></i> Coffee Maker</span>
+                                <span class="flex items-center gap-3"><i data-lucide="wind" class="w-4 h-4"></i> Climate Control</span>
+                                <span class="flex items-center gap-3"><i data-lucide="tv" class="w-4 h-4"></i> Smart TV</span>
+                            </div>
+                            <button onclick="router('booking')" class="btn-primary w-full py-4 uppercase text-xs tracking-[0.2em] active:scale-95">Reserve Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Room Item 2 -->
+                    <div class="glass-card-light hover-lift fade-in-section p-2 rounded-sm">
+                        <div class="img-zoom-container h-[250px] md:h-[400px] relative overflow-hidden rounded-sm">
+                            <img src="https://images.unsplash.com/photo-1590490360182-f33fb0d41022?q=80&w=2672&auto=format&fit=crop" class="w-full h-full object-cover" alt="Room">
+                            <div class="absolute top-4 right-4 md:top-6 md:right-6 bg-white/90 backdrop-blur px-4 py-1 md:px-5 md:py-2 text-lg md:text-xl font-serif">$1,200 <span class="text-[10px] font-sans uppercase tracking-widest text-[#666] ml-1">/night</span></div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <h3 class="text-2xl md:text-4xl mb-4">Garden Villa</h3>
+                            <p class="text-[#666] mb-8 leading-relaxed font-light text-sm md:text-base">A private sanctuary surrounded by lush tropical flora. Features a private plunge pool, outdoor shower, and personalized butler service.</p>
+                            <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-10 text-[10px] md:text-xs uppercase tracking-widest text-[#444]">
+                                <span class="flex items-center gap-3"><i data-lucide="waves" class="w-4 h-4"></i> Private Pool</span>
+                                <span class="flex items-center gap-3"><i data-lucide="user" class="w-4 h-4"></i> Butler</span>
+                                <span class="flex items-center gap-3"><i data-lucide="sun" class="w-4 h-4"></i> Terrace</span>
+                                <span class="flex items-center gap-3"><i data-lucide="glass-water" class="w-4 h-4"></i> Minibar</span>
+                            </div>
+                            <button onclick="router('booking')" class="btn-primary w-full py-4 uppercase text-xs tracking-[0.2em] active:scale-95">Reserve Now</button>
+                        </div>
+                    </div>
+                    
+                     <!-- Room Item 3 -->
+                    <div class="glass-card-light hover-lift fade-in-section p-2 rounded-sm md:col-span-2">
+                        <div class="grid md:grid-cols-2 h-full">
+                             <div class="img-zoom-container h-[250px] md:h-auto relative overflow-hidden rounded-sm">
+                                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Room">
+                                <div class="absolute top-4 right-4 md:top-6 md:right-6 bg-white/90 backdrop-blur px-4 py-1 md:px-5 md:py-2 text-lg md:text-xl font-serif">$2,500 <span class="text-[10px] font-sans uppercase tracking-widest text-[#666] ml-1">/night</span></div>
+                            </div>
+                            <div class="p-6 md:p-10 flex flex-col justify-center">
+                                <h3 class="text-2xl md:text-4xl mb-4">Presidential Suite</h3>
+                                <p class="text-[#666] mb-8 leading-relaxed font-light text-sm md:text-base">Our most exclusive offering. Expansive living areas, a private chef upon request, and unparalleled views of the horizon. The ultimate expression of luxury living.</p>
+                                <div class="grid grid-cols-2 gap-y-4 gap-x-8 mb-10 text-[10px] md:text-xs uppercase tracking-widest text-[#444]">
+                                    <span class="flex items-center gap-3"><i data-lucide="crown" class="w-4 h-4"></i> VIP Access</span>
+                                    <span class="flex items-center gap-3"><i data-lucide="utensils" class="w-4 h-4"></i> Private Chef</span>
+                                    <span class="flex items-center gap-3"><i data-lucide="monitor" class="w-4 h-4"></i> Media Room</span>
+                                    <span class="flex items-center gap-3"><i data-lucide="car" class="w-4 h-4"></i> Airport Transfer</span>
+                                </div>
+                                <button onclick="router('booking')" class="btn-primary w-full py-4 uppercase text-xs tracking-[0.2em] active:scale-95">Reserve Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- AMENITIES PAGE -->
+        <div id="amenities" class="page-content">
+            <section class="py-24 md:py-32 container mx-auto px-6 mt-16">
+                <div class="text-center max-w-3xl mx-auto mb-20 md:mb-24 fade-in-section">
+                    <span class="uppercase tracking-[0.2em] text-xs text-[#666] block mb-4">Relax & Rejuvenate</span>
+                    <h1 class="text-4xl md:text-6xl mb-6 md:mb-8">World-Class Amenities</h1>
+                     <p class="text-[#666] font-light text-base md:text-lg leading-relaxed">Designed to restore balance and inspire wonder, our amenities are an extension of the natural beauty that surrounds us.</p>
+                </div>
+
+                <div class="space-y-24 md:space-y-32">
+                    <!-- Amenity 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center fade-in-section">
+                        <div class="img-zoom-container h-[350px] md:h-[600px] rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1572331165267-854da2b00cc6?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Pool">
+                        </div>
+                        <div class="md:pl-12">
+                            <h2 class="text-3xl md:text-5xl mb-6 md:mb-8">Infinity Pool</h2>
+                            <p class="text-[#666] leading-relaxed mb-8 text-base md:text-lg font-light">Suspend yourself between the sky and the sea in our temperature-controlled infinity pool. Enjoy poolside cocktails and light bites from our attentive staff while you soak in the panoramic views.</p>
+                            <div class="glass-card-light p-6 rounded-sm">
+                                <ul class="space-y-4 text-xs uppercase tracking-widest text-[#444]">
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Open 6:00 AM - 10:00 PM</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Adults-only section available</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Private cabanas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Amenity 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center fade-in-section">
+                        <div class="order-2 md:order-1 md:pr-12">
+                            <h2 class="text-3xl md:text-5xl mb-6 md:mb-8">Serenity Spa</h2>
+                            <p class="text-[#666] leading-relaxed mb-8 text-base md:text-lg font-light">Embark on a journey of wellness with our holistic treatments inspired by local traditions. From deep tissue massages to rejuvenating facials, our expert therapists are dedicated to your relaxation.</p>
+                            <div class="glass-card-light p-6 rounded-sm">
+                                <ul class="space-y-4 text-xs uppercase tracking-widest text-[#444]">
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Organic products</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Couple's suites</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Steam & Sauna rooms</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="img-zoom-container h-[350px] md:h-[600px] order-1 md:order-2 rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Spa">
+                        </div>
+                    </div>
+                    
+                    <!-- Amenity 3 -->
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center fade-in-section">
+                        <div class="img-zoom-container h-[350px] md:h-[600px] rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Gym">
+                        </div>
+                        <div class="md:pl-12">
+                            <h2 class="text-3xl md:text-5xl mb-6 md:mb-8">State-of-the-Art Fitness</h2>
+                            <p class="text-[#666] leading-relaxed mb-8 text-base md:text-lg font-light">Maintain your routine with premium equipment and inspiring views. Personal trainers are available to guide you through bespoke workouts or yoga sessions on the deck.</p>
+                            <div class="glass-card-light p-6 rounded-sm">
+                                <ul class="space-y-4 text-xs uppercase tracking-widest text-[#444]">
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> 24/7 Access</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Yoga Classes</li>
+                                    <li class="flex items-center gap-4"><div class="w-8 md:w-12 h-[1px] bg-[#333]"></div> Technogym Equipment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- DINING PAGE -->
+        <div id="dining" class="page-content">
+             <section class="bg-[#f6f5e8] py-24 md:py-32 text-center mt-16">
+                <div class="container mx-auto px-6 fade-in-section">
+                    <h1 class="text-4xl md:text-6xl mb-6">Culinary Excellence</h1>
+                    <p class="text-[#666] max-w-2xl mx-auto text-base md:text-lg font-light">Savor exquisite flavors crafted by world-class chefs using the finest local ingredients.</p>
+                </div>
+            </section>
+
+            <section class="py-20 container mx-auto px-6">
+                <div class="grid gap-20 md:gap-32">
+                    <!-- Restaurant 1 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center fade-in-section">
+                        <div class="img-zoom-container h-[350px] md:h-[500px] rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover" alt="Restaurant">
+                        </div>
+                        <div class="md:pl-8 glass-card-light p-8 md:p-10 rounded-sm">
+                            <div class="flex justify-between items-baseline mb-4 border-b border-[#ccc] pb-4">
+                                <h2 class="text-2xl md:text-4xl">The Pavilion</h2>
+                                <span class="text-xs uppercase tracking-widest text-[#666]">Fine Dining</span>
+                            </div>
+                            <p class="text-xs text-[#666] uppercase tracking-widest mb-8 flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> 6:00 PM - 11:00 PM</p>
+                            <p class="text-[#666] leading-relaxed mb-10 text-base md:text-lg font-light">An elegant evening venue serving contemporary cuisine with a focus on seasonal seafood and perfectly aged steaks. The wine list features over 200 labels from around the globe, curated by our head sommelier.</p>
+                            <button class="btn-primary px-8 py-3 text-xs uppercase tracking-widest active:scale-95">Make Reservation</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Restaurant 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center fade-in-section">
+                         <div class="md:order-2 img-zoom-container h-[350px] md:h-[500px] rounded-sm overflow-hidden shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1575424909138-46b05e5919ec?q=80&w=3532&auto=format&fit=crop" class="w-full h-full object-cover" alt="Lounge">
+                        </div>
+                        <div class="md:order-1 md:pr-8 glass-card-light p-8 md:p-10 rounded-sm">
+                            <div class="flex justify-between items-baseline mb-4 border-b border-[#ccc] pb-4">
+                                <h2 class="text-2xl md:text-4xl">Sunset Lounge</h2>
+                                <span class="text-xs uppercase tracking-widest text-[#666]">Bar & Bites</span>
+                            </div>
+                            <p class="text-xs text-[#666] uppercase tracking-widest mb-8 flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> 4:00 PM - 1:00 AM</p>
+                            <p class="text-[#666] leading-relaxed mb-10 text-base md:text-lg font-light">The perfect spot for handcrafted cocktails and artisanal tapas as you watch the sun dip below the horizon. Features live jazz music on weekends and a relaxed, sophisticated atmosphere.</p>
+                            <button class="btn-primary px-8 py-3 text-xs uppercase tracking-widest active:scale-95">View Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page-content">
+            <section class="py-24 md:py-32 container mx-auto px-6 mt-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 fade-in-section">
+                    <div>
+                        <span class="uppercase tracking-[0.2em] text-xs text-[#666] block mb-6">Get in Touch</span>
+                        <h1 class="text-5xl md:text-6xl mb-12 leading-tight">We're Here <br><span class="italic">For You</span></h1>
+                        
+                        <div class="space-y-10">
+                            <div class="flex gap-6 md:gap-8 items-start group">
+                                <div class="w-14 h-14 md:w-16 md:h-16 border border-[#ebeade] flex items-center justify-center flex-shrink-0 group-hover:bg-[#333] group-hover:text-white transition-colors duration-300">
+                                    <i data-lucide="map-pin" class="w-5 h-5 md:w-6 md:h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl mb-2">Location</h3>
+                                    <p class="text-[#666] font-light text-base md:text-lg">123 Paradise Boulevard,<br>Coastal Haven, CH 12345</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-6 md:gap-8 items-start group">
+                                <div class="w-14 h-14 md:w-16 md:h-16 border border-[#ebeade] flex items-center justify-center flex-shrink-0 group-hover:bg-[#333] group-hover:text-white transition-colors duration-300">
+                                    <i data-lucide="phone" class="w-5 h-5 md:w-6 md:h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl mb-2">Phone</h3>
+                                    <p class="text-[#666] font-light text-base md:text-lg">+1 (555) 123-4567</p>
+                                    <p class="text-[#666] text-xs md:text-sm mt-1 uppercase tracking-widest">Available 24/7</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-6 md:gap-8 items-start group">
+                                <div class="w-14 h-14 md:w-16 md:h-16 border border-[#ebeade] flex items-center justify-center flex-shrink-0 group-hover:bg-[#333] group-hover:text-white transition-colors duration-300">
+                                    <i data-lucide="mail" class="w-5 h-5 md:w-6 md:h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl md:text-2xl mb-2">Email</h3>
+                                    <p class="text-[#666] font-light text-base md:text-lg">reservations@sunydiresorts.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card-light p-8 md:p-12 rounded-sm">
+                        <h2 class="text-2xl md:text-3xl mb-10">Send us a message</h2>
+                        <form class="space-y-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-xs uppercase tracking-widest">Name</label>
+                                    <input type="text" class="p-4 w-full border-b border-[#ccc] focus:border-[#333] bg-transparent outline-none transition-colors" required>
+                                </div>
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-xs uppercase tracking-widest">Email</label>
+                                    <input type="email" class="p-4 w-full border-b border-[#ccc] focus:border-[#333] bg-transparent outline-none transition-colors" required>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <label class="text-xs uppercase tracking-widest">Subject</label>
+                                <input type="text" class="p-4 w-full border-b border-[#ccc] focus:border-[#333] bg-transparent outline-none transition-colors">
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <label class="text-xs uppercase tracking-widest">Message</label>
+                                <textarea rows="5" class="p-4 w-full border border-[#ccc] focus:border-[#333] bg-white/50 outline-none transition-colors"></textarea>
+                            </div>
+                            <button class="btn-primary w-full py-4 uppercase text-xs tracking-[0.2em] active:scale-95">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- BOOKING PAGE -->
+        <div id="booking" class="page-content">
+            <section class="py-24 md:py-32 container mx-auto px-6 mt-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-16 fade-in-section">
+                        <h1 class="text-4xl md:text-6xl mb-6">Reserve Your Stay</h1>
+                        <p class="text-[#666] text-lg font-light">Begin your journey to paradise.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start fade-in-section">
+                        <div class="md:col-span-2 space-y-10">
+                            <!-- Dates -->
+                            <div class="glass-card-light p-6 md:p-10 rounded-sm">
+                                <h3 class="text-2xl mb-8 border-b border-[#ebeade] pb-4">1. Choose Dates</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div class="flex flex-col gap-3">
+                                        <label class="text-xs uppercase tracking-widest text-[#666]">Check-In</label>
+                                        <input type="date" class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333]">
+                                    </div>
+                                    <div class="flex flex-col gap-3">
+                                        <label class="text-xs uppercase tracking-widest text-[#666]">Check-Out</label>
+                                        <input type="date" class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333]">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Room Selection -->
+                            <div class="glass-card-light p-6 md:p-10 rounded-sm">
+                                <h3 class="text-2xl mb-8 border-b border-[#ebeade] pb-4">2. Select Room</h3>
+                                <div class="flex flex-col gap-3">
+                                    <label class="text-xs uppercase tracking-widest text-[#666]">Room Type</label>
+                                    <select class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333] bg-transparent">
+                                        <option>Ocean View Suite - $850/night</option>
+                                        <option>Garden Villa - $1,200/night</option>
+                                        <option>Presidential Suite - $2,500/night</option>
+                                        <option>Deluxe Room - $650/night</option>
+                                    </select>
+                                </div>
+                                <div class="mt-8 flex flex-col gap-3">
+                                     <label class="text-xs uppercase tracking-widest text-[#666]">Guests</label>
+                                     <select class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333] bg-transparent">
+                                        <option>1 Guest</option>
+                                        <option selected>2 Guests</option>
+                                        <option>3 Guests</option>
+                                        <option>4 Guests</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Personal Info -->
+                            <div class="glass-card-light p-6 md:p-10 rounded-sm">
+                                <h3 class="text-2xl mb-8 border-b border-[#ebeade] pb-4">3. Personal Details</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                    <input type="text" placeholder="First Name" class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333]">
+                                    <input type="text" placeholder="Last Name" class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333]">
+                                </div>
+                                <input type="email" placeholder="Email Address" class="p-4 w-full mb-8 border border-[#ccc] outline-none focus:border-[#333]">
+                                <textarea placeholder="Special Requests" class="p-4 w-full border border-[#ccc] outline-none focus:border-[#333]" rows="3"></textarea>
+                            </div>
+                            
+                             <button class="btn-primary w-full py-5 uppercase text-sm tracking-[0.2em] active:scale-95">Confirm Reservation</button>
+                        </div>
+
+                        <!-- Summary -->
+                        <div class="glass-card-light p-8 md:p-10 rounded-sm sticky top-28">
+                            <h3 class="text-2xl mb-8">Booking Summary</h3>
+                            <div class="space-y-6 text-sm pb-8 border-b border-[#ccc] mb-8">
+                                <div class="flex justify-between">
+                                    <span class="text-[#666] uppercase tracking-wider text-xs">Check-In</span>
+                                    <span>--/--/--</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-[#666] uppercase tracking-wider text-xs">Check-Out</span>
+                                    <span>--/--/--</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-[#666] uppercase tracking-wider text-xs">Guests</span>
+                                    <span>2</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-[#666] uppercase tracking-wider text-xs">Room</span>
+                                    <span>Not Selected</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-xl font-serif mb-8">
+                                <span>Total</span>
+                                <span>$0.00</span>
+                            </div>
+                            <div class="text-xs text-[#666] space-y-3 uppercase tracking-wider">
+                                <p class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3"></i> Free cancellation up to 48h</p>
+                                <p class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3"></i> Check-in: 3:00 PM</p>
+                                <p class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3"></i> Breakfast included</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer with Glassmorphism -->
+    <footer class="glass-footer pt-24 pb-12 mt-auto border-t border-[#dcdbd0]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-20">
+                <div class="md:col-span-1">
+                    <h3 class="text-3xl serif mb-6 tracking-widest text-[#333]">SUNYDI</h3>
+                    <p class="text-sm text-[#666] leading-relaxed font-light">A sanctuary of luxury and calm. Experience the best of hospitality in an environment designed for your absolute comfort.</p>
+                </div>
+                <div>
+                    <h4 class="uppercase text-xs tracking-widest mb-8 font-semibold">Quick Links</h4>
+                    <ul class="space-y-4 text-sm text-[#666]">
+                        <li><a href="#" onclick="router('home')" class="hover:text-[#333] transition-colors hover:ml-2 duration-300 block">Home</a></li>
+                        <li><a href="#" onclick="router('rooms')" class="hover:text-[#333] transition-colors hover:ml-2 duration-300 block">Accommodations</a></li>
+                        <li><a href="#" onclick="router('amenities')" class="hover:text-[#333] transition-colors hover:ml-2 duration-300 block">Amenities</a></li>
+                        <li><a href="#" onclick="router('dining')" class="hover:text-[#333] transition-colors hover:ml-2 duration-300 block">Dining</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="uppercase text-xs tracking-widest mb-8 font-semibold">Contact</h4>
+                     <ul class="space-y-4 text-sm text-[#666]">
+                        <li class="flex items-start gap-3"><i data-lucide="map-pin" class="w-4 h-4 mt-1"></i> 123 Paradise Blvd, CH 12345</li>
+                        <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +1 (555) 123-4567</li>
+                        <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> info@sunydiresorts.com</li>
+                     </ul>
+                </div>
+                <div>
+                    <h4 class="uppercase text-xs tracking-widest mb-8 font-semibold">Newsletter</h4>
+                    <div class="flex flex-col gap-4">
+                        <input type="email" placeholder="Your Email" class="p-4 text-sm border border-[#ccc] focus:border-[#333] bg-transparent outline-none transition-colors">
+                        <button class="btn-primary py-3 text-xs uppercase tracking-widest w-full active:scale-95">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-[#dcdbd0] pt-10 text-center text-xs text-[#666] uppercase tracking-widest">
+                <p>© 2025 Sunydi Resorts. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Router Logic
+        function router(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const activePage = document.getElementById(pageId);
+            if(activePage) {
+                activePage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Trigger animations for new content
+                setTimeout(() => {
+                    setupIntersectionObserver();
+                }, 100);
+            }
+
+            // Update Nav Active State
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Very basic active state logic (can be refined)
+            const activeLink = document.getElementById(`link-${pageId}`);
+            if(activeLink) activeLink.classList.add('active');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const isOpen = !menu.classList.contains('translate-x-full');
+            
+            if (isOpen) {
+                menu.classList.add('translate-x-full');
+                document.body.style.overflow = ''; // Restore scrolling
+            } else {
+                menu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            }
+        }
+
+        // Intersection Observer for Fade In Animations
+        function setupIntersectionObserver() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach((section) => {
+                observer.observe(section);
+            });
+        }
+
+        // Testimonial Slideshow Logic
+        let currentTestimonial = 0;
+        function initTestimonialSlideshow() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            if (slides.length === 0) return;
+
+            setInterval(() => {
+                slides[currentTestimonial].classList.remove('active');
+                currentTestimonial = (currentTestimonial + 1) % slides.length;
+                slides[currentTestimonial].classList.add('active');
+            }, 5000); // Change every 5 seconds
+        }
+
+
+        // Initial Loading Screen Logic - NOW REMOVED, simply initializes immediately
+        document.addEventListener('DOMContentLoaded', () => {
+            // Start testimonial slideshow
+            initTestimonialSlideshow();
+            
+            // Immediate load (no waiting)
+            const body = document.body;
+            body.classList.add('loaded');
+            setupIntersectionObserver();
+        });
+
+    </script>
+</body>
+</html>
